@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"))
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://frontend-h32r.onrender.com/',
     credentials: true,
 };
 
