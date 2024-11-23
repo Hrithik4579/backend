@@ -47,7 +47,7 @@ const studentLogout = asyncHandler(async (req, res) => {
 
 const studentLogin = asyncHandler(async (req, res, next) => {
     const { enrollmentNumber, password } = req.body
-    console.log(enrollmentNumber);
+    // console.log(enrollmentNumber);
     const student = await Student.findOne({ enrollmentNumber })
 
     if (!student) {
