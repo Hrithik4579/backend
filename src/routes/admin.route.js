@@ -1,7 +1,10 @@
 import { Router } from "express";
 import { 
     adminLogin,
-    adminLogout
+    adminLogout,
+    fetchStudents,
+    deleteStudent,
+    changeStudent
 } from "../controllers/admin.controller.js";
 import { verifyAdminJWT } from "../middlewares/adminAuth.middleware.js";
 import { createJob, deleteJob, makeJobInactive, fetchJob, fetchAllJobs, inActiveJobs, generateReport } from "../controllers/job.controller.js";
