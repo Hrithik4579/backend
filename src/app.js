@@ -4,6 +4,11 @@ import cookieParser from "cookie-parser"
 
 const app = express()
 app.use(cookieParser())
+app.use(express.static('build'));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+});
 
 // app.use(cors({
 //     origin: process.env.CORS_ORIGIN,
