@@ -82,5 +82,41 @@ const adminLogout = asyncHandler(async (req, res, next) => {
         throw new ApiError(500, "Something went wrong while logging out the user");
     }
 });
-
-export { adminLogin, adminLogout }
+const fetchStudents=asyncHandler(async(req,res)=>{
+    try {
+        const students = await Student.find();
+        res.json(students);
+      } catch (err) {
+        res.status(500).send({ message: "Error fetching students" });
+      }
+});
+const deleteStudent=asyncHandler(async(req,res)=>{
+    try {
+        const { id } = req.params;
+        await Student.findByIdAndDelete(id);
+        res.json({ message: "Student deleted successfully" });
+      } catch (err) {
+        res.status(500).send({ message: "Error deleting student" });
+      }
+});
+const changeStudent=asyncHandler(async(req,res)=>{
+    try {
+        const { id } = req.params;
+        const { enrollmentNumber, email, cgpa } = req.body;
+    
+        const updatedStudent = await Student.findByIdAndUpdate(
+          id,
+          { enrollmentNumber, email, cgpa },
+          { new: true } // Return the updated document
+        );
+    
+        if (updatedStudent) {
+          res.json(updatedStudent);
+        } else {
+          res.status(404).json({ message: "Student not found" });
+        }
+      } catch (err) {
+        res.status(500).send({ message: "Error updating student" });
+      }
+})
+export { adminLogin, adminLogout, fetchStudents, deleteStudent, changeStudent}
