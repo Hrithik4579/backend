@@ -35,14 +35,14 @@ const createJob = asyncHandler(async (req, res) => {
         if (localFilePath){
             response = await uploadOnCloudinary(localFilePath);
         }
-        console.log("RESPONSE: ", response);
+        // console.log("RESPONSE: ", response);
         if (localFilePath && !response) {
             fs.unlinkSync(localFilePath)
             return ApiError(500, "Error uploading file to cloudinary")
         }
 
         const logoUrl = await response?.url;
-        console.log("LOGOURL: ", logoUrl);
+        // console.log("LOGOURL: ", logoUrl);
         
         // const existedUser = await Job.findOne({ jobId })
 
@@ -83,7 +83,7 @@ const createJob = asyncHandler(async (req, res) => {
             }
         });
 
-        console.log("Unable to send mail to: ", unableToSendMail);
+        // console.log("Unable to send mail to: ", unableToSendMail);
 
         return res
             .status(200)
@@ -128,7 +128,7 @@ const makeJobInactive = asyncHandler(async (req, res) => {
 
 const fetchJob = asyncHandler(async (req, res) => {
     const id = req.params.id;
-    console.log(id);
+    // console.log(id);
     const job = await Job.findById(id);
 
     if (!job) {

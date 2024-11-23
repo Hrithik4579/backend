@@ -23,7 +23,7 @@ const generateAccessAndRefreshTokens = async(userId) =>{
 
 const adminLogin = asyncHandler(async (req, res, next) => {
     const {userId, password} = req.body
-    console.log(userId);
+    // console.log(userId);
     const admin = await Admin.findOne({userId})
     
     if(!admin){
